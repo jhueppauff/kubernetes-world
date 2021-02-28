@@ -1,0 +1,31 @@
+stages: [lint, deploy]
+
+.kubectl:
+  image: alpine:3.10
+  before_script:
+  - apk add --no-cache curl bash
+  - curl -sLO https://storage.googleapis.com/kubernetes-release/release/v1.20.7/bin/linux/amd64/kubectl
+  - mv kubectl /usr/local/bin/kubectl
+  - chmod +x /usr/local/bin/kubectl
+
+validate:
+  extends: .kubectl
+  stage: validate
+  script:
+  - kubectl apply --dry-run -f $MANIFESTS -R
+  except:
+    refs:
+    - master
+  tags:
+  - k8s-prod-01
+
+deploy:
+  extends: .kubectl
+  stage: deploy
+  script:
+  - kubectl apply -f $MANIFESTS -R
+  only:
+    refs:
+    - master
+  tags:
+  - k8s-prod-01

@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: safespace
+  name: bible-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bible-bot
+  template:
+    metadata:
+      labels:
+        app: bible-bot
+    spec:
+      containers:
+        - image: harbour.siewert.wtf/bible-bot:5a3f0d8193f9e228d58cc409e15cfcdceb1615c1
+          name: bible-bot
+          imagePullPolicy: "Always"
+          env:
+            - name: BIBLE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: bible-bot
+                  key: bible_api_key
+            - name: DISCORD_BOT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: bible-bot
+                  key: discord_bot_token

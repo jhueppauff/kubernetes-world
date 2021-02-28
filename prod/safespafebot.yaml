@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: safespace
+  name: safespacebot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bot
+  template:
+    metadata:
+      labels:
+        app: bot
+    spec:
+      containers:
+      - image: jhueppauff/discord-safespacebot:latest
+        name: safespacebot
+        imagePullPolicy: "Always"
+        env:
+          - name: BOT_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: safespacebot
+                key: bot_token
