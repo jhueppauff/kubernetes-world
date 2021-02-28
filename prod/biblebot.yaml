@@ -15,7 +15,7 @@ spec:
         app: bible-bot
     spec:
       containers:
-        - image: harbour.siewert.wtf/bible-bot:5a3f0d8193f9e228d58cc409e15cfcdceb1615c1
+        - image: public-docker.siewert.io/bible-bot:5a3f0d8193f9e228d58cc409e15cfcdceb1615c1
           name: bible-bot
           imagePullPolicy: "Always"
           env:
