@@ -15,7 +15,7 @@ validate:
   extends: .kubectl
   stage: lint
   script:
-  - kubectl apply --dry-run -f $MANIFESTS -R
+  - kubectl apply --dry-run -f prod -R
   except:
     refs:
     - master
@@ -26,7 +26,7 @@ deploy:
   extends: .kubectl
   stage: deploy
   script:
-  - kubectl apply -f $MANIFESTS -R
+  - kubectl apply -f prod -R
   only:
     refs:
     - master
