@@ -9,7 +9,7 @@ stages: [lint, deploy]
   - mv kubectl /usr/local/bin/kubectl
   - chmod +x /usr/local/bin/kubectl
   - echo ${KUBE_CONFIG} | base64 -d > ~/.kube/config
-  - kubectl config use-context k8s-prod-01
+  - kubectl config use-context safespace
 
 validate:
   extends: .kubectl
