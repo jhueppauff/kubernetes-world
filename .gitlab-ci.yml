@@ -10,7 +10,7 @@ stages: [lint, deploy]
 
 validate:
   extends: .kubectl
-  stage: validate
+  stage: lint
   script:
   - kubectl apply --dry-run -f $MANIFESTS -R
   except:
