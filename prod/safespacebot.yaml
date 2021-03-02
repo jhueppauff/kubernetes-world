@@ -15,7 +15,7 @@ spec:
         app: bot
     spec:
       containers:
-      - image: jhueppauff/discord-safespacebot@sha256:e312ca67e2e1fe45b36567143605f5e9c281f585d07f9a7e69aa206d0dffa74b
+      - image: jhueppauff/discord-safespacebot@sha256:c397739d97d875e8f83931dd2f8475a3de833f4bd0e6fcde044fdb5a84400c9e
         name: safespacebot
         imagePullPolicy: "Always"
         env:
@@ -24,3 +24,23 @@ spec:
               secretKeyRef:
                 name: safespacebot
                 key: bot_token
+          - name: COGNITIVE_SERVICES_APIKEY
+            valueFrom:
+              secretKeyRef:
+                name: safespacebot
+                key: cognitive_services_apikey
+          - name: COGNITIVE_SERVICES_ENDPOINT
+            valueFrom:
+              secretKeyRef:
+                name: safespacebot
+                key: cognitive_services_endpoint
+          - name: COGNITIVE_SERVICES_LANGUAGE
+            valueFrom:
+              secretKeyRef:
+                name: safespacebot
+                key: cognitive_services_language
+          - name: COGNITIVE_SERVICES_REGION
+            valueFrom:
+              secretKeyRef:
+                name: safespacebot
+                key: cognitive_services_region
