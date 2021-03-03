@@ -15,7 +15,7 @@ spec:
         app: bot
     spec:
       containers:
-      - image: jhueppauff/discord-safespacebot@sha256:4116fe7fdd8e13523bc926438a78afd9efe046bb5f9fcbd1e4fd7f64c2fb068b
+      - image: jhueppauff/discord-safespacebot@sha256:307de2071f4363590a2d3f670d0b54a30e1206856c06ffe4c3eeb4c9170698a6
         name: safespacebot
         imagePullPolicy: "Always"
         env:
